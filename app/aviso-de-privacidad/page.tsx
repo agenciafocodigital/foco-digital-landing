@@ -15,10 +15,8 @@ export default function PrivacyNoticePage() {
         <h2 id="privacy-responsible">1. Responsable del tratamiento</h2>
         <p>
           Foco Digital es responsable del tratamiento de los datos personales recabados a través de este sitio. Para
-          asuntos de privacidad puedes iniciar contacto por WhatsApp en{" "}
-          <a href="https://wa.me/525618765291" target="_blank" rel="noopener noreferrer">
-            +52 56 1876 5291
-          </a>
+          asuntos de privacidad puedes escribir a{" "}
+          <a href="mailto:foco.digital.contacto@gmail.com">foco.digital.contacto@gmail.com</a>
           .
         </p>
         <p>
@@ -31,9 +29,8 @@ export default function PrivacyNoticePage() {
       <section aria-labelledby="privacy-data">
         <h2 id="privacy-data">2. Datos personales que podemos recabar</h2>
         <p>
-          Cuando solicitas un diagnóstico, podemos recabar tu nombre, el nombre de tu negocio, tu número de WhatsApp y
-          la información que decidas compartir voluntariamente durante la conversación. No solicitamos datos personales
-          sensibles mediante este sitio.
+          Cuando solicitas información, podemos recabar tu nombre, el nombre de tu negocio, tu correo electrónico y la
+          información que decidas compartir en el mensaje. No solicitamos datos personales sensibles mediante este sitio.
         </p>
       </section>
 
@@ -55,10 +52,10 @@ export default function PrivacyNoticePage() {
       <section aria-labelledby="privacy-transfers">
         <h2 id="privacy-transfers">4. Transferencias y conservación</h2>
         <p>
-          Foco Digital no realiza transferencias de datos personales a terceros para fines distintos a los descritos en
-          este aviso, salvo que exista una obligación legal aplicable o que sea necesario para atender una solicitud
-          que tú hayas autorizado. Los datos se conservarán solo durante el tiempo necesario para cumplir las
-          finalidades informadas y las obligaciones legales aplicables.
+          El formulario usa la infraestructura de Netlify Forms para recibir y notificar solicitudes a Foco Digital.
+          Fuera de ese proveedor técnico, Foco Digital no realiza transferencias de datos personales para fines distintos
+          a los descritos en este aviso, salvo obligación legal aplicable. Los datos se conservarán solo durante el tiempo
+          necesario para cumplir las finalidades informadas y las obligaciones legales aplicables.
         </p>
       </section>
 
@@ -66,7 +63,7 @@ export default function PrivacyNoticePage() {
         <h2 id="privacy-rights">5. Derechos ARCO y revocación</h2>
         <p>
           Puedes solicitar el acceso, rectificación, cancelación u oposición al tratamiento de tus datos personales,
-          así como revocar tu consentimiento o limitar su uso y divulgación. Envía tu solicitud por WhatsApp e incluye
+          así como revocar tu consentimiento o limitar su uso y divulgación. Envía tu solicitud por correo e incluye
           tu nombre, un medio de contacto, una descripción clara de la petición y, cuando corresponda, los datos que
           deseas corregir.
         </p>

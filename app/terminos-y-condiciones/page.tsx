@@ -15,8 +15,8 @@ export default function TermsAndConditionsPage() {
         <h2 id="terms-scope">1. Alcance del sitio</h2>
         <p>
           Este sitio es informativo y tiene el propósito de presentar los servicios de Foco Digital para negocios de
-          bienestar en México. El uso del formulario abre una conversación por WhatsApp; no crea por sí mismo una
-          relación contractual ni implica que Foco Digital almacene tus datos desde este sitio.
+          bienestar en México. El uso del formulario envía una solicitud de contacto; no crea por sí mismo una relación
+          contractual ni implica una aceptación de servicios.
         </p>
       </section>
 
