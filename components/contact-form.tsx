@@ -56,7 +56,7 @@ export function ContactForm() {
     formData.append("consent", "true");
 
     try {
-      const response = await fetch("/", {
+      const response = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData.toString()
@@ -75,8 +75,6 @@ export function ContactForm() {
     <form
       name="contacto"
       method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
       noValidate
       className="rounded-3xl border border-azul-electrico/55 bg-azul-noche p-5 shadow-soft sm:p-7"
