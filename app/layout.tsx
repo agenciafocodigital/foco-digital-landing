@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   description:
     "Foco Digital ayuda a spas y centros de bienestar en México a atraer más citas con marketing claro y automatización sin complicaciones.",
   applicationName: "Foco Digital",
+  icons: {
+    icon: "/images/foco-digital-logo.png",
+    shortcut: "/images/foco-digital-logo.png",
+    apple: "/images/foco-digital-logo.png"
+  },
   keywords: [
     "marketing para spas",
     "marketing bienestar México",
