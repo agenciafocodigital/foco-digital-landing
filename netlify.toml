@@ -1,0 +1,19 @@
+[build]
+  command = "unzip -o web-real.zip -d dist"
+  publish = "dist"
+
+[[redirects]]
+  from = "/aviso-de-privacidad"
+  to = "/privacidad/"
+  status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/404/index.html"
+  status = 404
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
