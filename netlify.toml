@@ -1,5 +1,5 @@
 [build]
-  command = "unzip -o web-real.zip -d dist"
+  command = "unzip -o web-real.zip -d dist && unzip -o web-theme.zip -d dist"
   publish = "dist"
 
 [[redirects]]
