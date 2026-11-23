@@ -63,14 +63,14 @@
     const compran = Number(inputs.compran.value) || 0;
     const ticket = Math.max(0, Number(inputs.ticket.value) || 0);
     const perdidos = Math.round(mensajes * SEMANAS_POR_MES * tarde / 10);
-    const ventas = perdidos * compran / 10;
-    const mes = Math.round(ventas * ticket);
+    const ventas = Math.round(perdidos * compran / 10);
+    const mes = ventas * ticket;
     $('#calc-mensajes-out').value = mensajes;
     $('#calc-tarde-out').value = tarde;
     $('#calc-compran-out').value = compran;
     $('#calc-mes').textContent = money.format(mes);
     $('#calc-detalle').textContent =
-      `${num.format(perdidos)} mensajes sin respuesta a tiempo al mes · ${Math.round(ventas).toLocaleString("es-MX")} ventas que podrían cerrarse · ${money.format(mes * 12)} al año`;
+      `${num.format(perdidos)} mensajes sin respuesta a tiempo al mes · ${num.format(ventas)} ventas que podrían cerrarse · ${money.format(mes * 12)} al año`;
     last = { mensajes, tarde, compran, ticket, perdidos, mes };
   }
 

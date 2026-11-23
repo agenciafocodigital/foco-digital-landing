@@ -203,3 +203,6 @@ img.visual-image { height: auto; }
 .card .text-link { padding-block: 10px; display: inline-block; }
 
 @media (max-width: 420px) { .axis-chip .axis-a { font-size: 13px; } .axis-chip { padding: 7px 10px; } }
+/* Fila de llamados alineada con el logo y el contenido en tableta */
+@media (max-width: 1080px) { .header-axes { padding-inline: clamp(20px, 3vw, 42px); } }
+@media (max-width: 760px) { .header-axes { padding-inline: 16px; } }
