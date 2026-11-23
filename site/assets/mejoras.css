@@ -234,3 +234,6 @@ body .page-hero .breadcrumb, body .hero .breadcrumb, body .breadcrumb.fd-reveal 
 }
 body .hero h1 { max-width: none; text-wrap: balance; }
 body .hero h1 em { display: block; }
+
+/* §18 Flujo del asistente: aire entre el dato y su explicación */
+body .automation-demo .demo-node small { display: block; margin-top: 10px; line-height: 1.6; font-size: 13px; }
