@@ -1,6 +1,26 @@
 [build]
-  command = "unzip -o web-real.zip -d dist && unzip -o web-theme.zip -d dist"
-  publish = "dist"
+  publish = "site"
+
+# URL anteriores → URL nuevas (22/11/2026)
+[[redirects]]
+  from = "/diagnostico/*"
+  to = "/diagnostico-gratuito/"
+  status = 301
+
+[[redirects]]
+  from = "/auditoria/*"
+  to = "/diagnostico-gratuito/"
+  status = 301
+
+[[redirects]]
+  from = "/agencia/*"
+  to = "/nosotros/"
+  status = 301
+
+[[redirects]]
+  from = "/inversion/*"
+  to = "/servicios/"
+  status = 301
 
 [[redirects]]
   from = "/aviso-de-privacidad"
@@ -17,3 +37,8 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

@@ -1,0 +1,6 @@
+# Vista previa: el sitio no se indexa hasta conectar agenciafocodigital.com.
+# Al conectar el dominio: cambiar "Disallow: /" por "Allow: /" y quitar la etiqueta noindex de las páginas.
+User-agent: *
+Disallow: /
+
+Sitemap: https://agenciafocodigital.com/sitemap.xml
