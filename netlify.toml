@@ -1,4 +1,6 @@
 [build]
+  # Sitio estático: no hay nada que compilar. Este comando tiene prioridad sobre el del panel de Netlify.
+  command = "echo Sitio estatico listo"
   publish = "site"
 
 # URL anteriores → URL nuevas (22/11/2026)
