@@ -70,7 +70,7 @@
     $('#calc-compran-out').value = compran;
     $('#calc-mes').textContent = money.format(mes);
     $('#calc-detalle').textContent =
-      `${num.format(perdidos)} mensajes sin respuesta a tiempo al mes · ${num.format(ventas)} ventas que podrían cerrarse · ${money.format(mes * 12)} al año`;
+      `${num.format(perdidos)} mensajes sin respuesta a tiempo al mes · ${Math.round(ventas).toLocaleString("es-MX")} ventas que podrían cerrarse · ${money.format(mes * 12)} al año`;
     last = { mensajes, tarde, compran, ticket, perdidos, mes };
   }
 

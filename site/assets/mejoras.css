@@ -165,3 +165,41 @@ img.visual-image { height: auto; }
   .site-header nav > .nav-calc { margin-top: 10px; justify-content: center; }
   .site-header nav > .nav-calc + .nav-cta { margin-left: 0; }
 }
+
+/* 15. Barra superior: un llamado por eje, con la pregunta que lo explica */
+.site-header nav > .nav-axis {
+  display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1px;
+  min-height: 52px; padding: 7px 16px; line-height: 1.15; white-space: nowrap; box-shadow: none;
+}
+.site-header nav > .nav-axis .axis-q { font-size: 11px; font-weight: 500; opacity: .8; }
+.site-header nav > .nav-axis .axis-a { font-size: 14px; font-weight: 700; }
+.site-header nav > .nav-calc { background: transparent; color: var(--white); border: 1px solid rgba(36,185,242,.55); }
+.site-header nav > .nav-calc .axis-q { color: var(--blue); opacity: 1; }
+.site-header nav > .nav-calc:hover { border-color: var(--blue); }
+.site-header nav > .nav-axis + .nav-axis { margin-left: -8px; }
+.site-header nav > a.nav-axis::after { display: none; }
+
+/* En tableta y celular los dos llamados quedan visibles bajo la barra */
+.header-axes { display: none; }
+@media (max-width: 1080px) {
+  .site-header nav > .nav-axis { display: none; }
+  .header-axes {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 10px 16px 12px; background: var(--night); border-bottom: 1px solid var(--line);
+  }
+  .axis-chip {
+    display: flex; flex-direction: column; justify-content: center; gap: 1px; min-height: 52px; padding: 7px 12px;
+    border-radius: 8px; text-decoration: none; color: var(--white); border: 1px solid rgba(36,185,242,.55); line-height: 1.15;
+  }
+  .axis-chip .axis-q { font-size: 11px; color: var(--blue); }
+  .axis-chip .axis-a { font-size: 14px; font-weight: 700; }
+  .axis-chip.axis-yellow { background: var(--yellow); border-color: var(--yellow); color: var(--night); }
+  .axis-chip.axis-yellow .axis-q { color: var(--night); opacity: .75; }
+  .axis-chip:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+}
+@media (max-width: 360px) { .axis-chip .axis-a { font-size: 13px; } }
+
+/* Áreas de toque más cómodas en los enlaces de las tarjetas */
+.card .text-link { padding-block: 10px; display: inline-block; }
+
+@media (max-width: 420px) { .axis-chip .axis-a { font-size: 13px; } .axis-chip { padding: 7px 10px; } }
