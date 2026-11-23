@@ -249,3 +249,8 @@ body .automation-demo .demo-node small { display: block; margin-top: 10px; line-
 .page-hero .hero-cta { margin-top: 22px; }
 .cta-alt a { display: inline-block; padding-block: 10px; }
 article .cta-alt { margin: 12px 0 0; font-size: 15px; }
+
+/* §20 Foto de Frank en Nosotros */
+.frank-photo .frank-img { width: 100%; max-width: 440px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 22px; display: block; margin-inline: auto; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+.frank-home .frank-img { max-width: 360px; }
+.frank-home .split { align-items: center; }
