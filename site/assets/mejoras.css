@@ -254,3 +254,7 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 .frank-photo .frank-img { width: 100%; max-width: 440px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 22px; display: block; margin-inline: auto; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
 .frank-home .frank-img { max-width: 360px; }
 .frank-home .split { align-items: center; }
+
+/* §21 Imagen de portada (mujer tejiendo): encuadre que deja ver el celular y degradado más suave */
+.hero-image .visual-image{object-position:82% 72%}
+.hero-image::after{background:linear-gradient(180deg,transparent 70%,rgba(8,31,53,.14))}
