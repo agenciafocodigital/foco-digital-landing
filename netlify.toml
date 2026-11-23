@@ -1,6 +1,15 @@
 [build]
-  command = "unzip -o web-real.zip -d dist && unzip -o web-theme.zip -d dist"
-  publish = "dist"
+  publish = "site"
+
+[[redirects]]
+  from = "/auditoria/*"
+  to = "/diagnostico/"
+  status = 301
+
+[[redirects]]
+  from = "/auditoria"
+  to = "/diagnostico/"
+  status = 301
 
 [[redirects]]
   from = "/aviso-de-privacidad"
