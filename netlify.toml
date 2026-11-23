@@ -3,21 +3,6 @@
 
 # URL anteriores → URL nuevas (22/11/2026)
 [[redirects]]
-  from = "/servicios/marketing/*"
-  to = "/servicios/marketing-redes-sociales/"
-  status = 301
-
-[[redirects]]
-  from = "/servicios/sitios-web/*"
-  to = "/servicios/paginas-web/"
-  status = 301
-
-[[redirects]]
-  from = "/servicios/automatizacion/*"
-  to = "/servicios/asistentes-con-ia/"
-  status = 301
-
-[[redirects]]
   from = "/diagnostico/*"
   to = "/diagnostico-gratuito/"
   status = 301
