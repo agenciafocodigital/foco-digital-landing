@@ -93,6 +93,7 @@
       const response = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
       if (!response.ok) throw new Error('Submission rejected');
       (window.dataLayer = window.dataLayer || []).push({ event: 'autodiagnostico_envio', resultado: r.clave });
+      if (typeof window.gtag === 'function') window.gtag('event', 'autodiagnostico_envio', { resultado: r.clave });
     } catch {
       error.textContent = 'No pudimos enviar tus respuestas. Siguen aquí para volver a intentarlo. También puedes escribirnos por WhatsApp al 56 1876 5291.';
       sending = false; next.disabled = false; next.textContent = 'Ver mi resultado';

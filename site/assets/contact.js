@@ -19,6 +19,7 @@
       const response = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
       if (!response.ok) throw new Error('Submission rejected');
       form.reset();
+      if (typeof window.gtag === 'function') window.gtag('event', 'contacto_envio');
       status.textContent = 'Recibimos tu solicitud. Te escribiremos por WhatsApp.';
     } catch {
       status.textContent = 'No pudimos enviar tu solicitud. Tus datos siguen aquí para volver a intentarlo. También puedes escribirnos por WhatsApp al 56 1876 5291.';

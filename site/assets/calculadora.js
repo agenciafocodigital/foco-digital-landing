@@ -113,6 +113,7 @@
       const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
       if (!res.ok) throw new Error(String(res.status));
       (window.dataLayer = window.dataLayer || []).push({ event: 'calculadora_envio', estimacion_mes: last.mes });
+      if (typeof window.gtag === 'function') window.gtag('event', 'calculadora_envio', { estimacion_mes: last.mes });
       const texto = `Hola, usé la calculadora de Foco Digital. Recibo ${last.mensajes} mensajes a la semana y calculé ${money.format(last.mes)} al mes en ventas que podría estar perdiendo. Quiero revisar cómo no perderlas.`;
       $('#calc-wa').href = `https://wa.me/${WA}?text=${encodeURIComponent(texto)}`;
       form.hidden = true;

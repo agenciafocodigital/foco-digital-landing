@@ -97,3 +97,9 @@
   window.addEventListener('scroll', update, { passive: true });
   bar.addEventListener('focusin', () => bar.classList.add('is-visible'));
 })();
+
+/* Clics a WhatsApp para Google Analytics */
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href*="wa.me"]');
+  if (a && typeof window.gtag === 'function') window.gtag('event', 'whatsapp_clic', { ubicacion: location.pathname });
+});
