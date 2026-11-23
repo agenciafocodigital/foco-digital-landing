@@ -237,3 +237,15 @@ body .hero h1 em { display: block; }
 
 /* §18 Flujo del asistente: aire entre el dato y su explicación */
 body .automation-demo .demo-node small { display: block; margin-top: 10px; line-height: 1.6; font-size: 13px; }
+
+/* §19 Etapa 1 de la auditoría */
+.cta-band .cta-alt { margin: 14px 0 0; font-size: 15px; color: rgba(247,249,251,.82); }
+.cta-band .cta-alt a { color: var(--yellow); text-decoration: underline; text-underline-offset: 3px; }
+.diag-steps { margin-top: 18px; font-size: 15px; line-height: 1.65; color: rgba(247,249,251,.82); }
+.section.white .diag-steps { color: inherit; opacity: .85; }
+.start-list { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 12px; }
+.start-list li { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(36,185,242,.22); font-size: 16px; line-height: 1.5; }
+.start-list li a { color: var(--blue, #24B9F2); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.page-hero .hero-cta { margin-top: 22px; }
+.cta-alt a { display: inline-block; padding-block: 10px; }
+article .cta-alt { margin: 12px 0 0; font-size: 15px; }

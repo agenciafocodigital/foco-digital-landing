@@ -19,9 +19,9 @@
       const response = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
       if (!response.ok) throw new Error('Submission rejected');
       form.reset();
-      status.textContent = 'Recibimos tu solicitud. Foco Digital te contactará por el correo que compartiste.';
+      status.textContent = 'Recibimos tu solicitud. Te escribiremos por WhatsApp.';
     } catch {
-      status.textContent = 'No pudimos enviar tu solicitud. Tus datos siguen aquí para volver a intentarlo. También puedes escribir a foco.digital.contacto@gmail.com.';
+      status.textContent = 'No pudimos enviar tu solicitud. Tus datos siguen aquí para volver a intentarlo. También puedes escribirnos por WhatsApp al 56 1876 5291.';
     } finally {
       sending = false; button.disabled = false; button.textContent = 'Enviar mi solicitud';
     }
