@@ -206,3 +206,31 @@ img.visual-image { height: auto; }
 /* Fila de llamados alineada con el logo y el contenido en tableta */
 @media (max-width: 1080px) { .header-axes { padding-inline: clamp(20px, 3vw, 42px); } }
 @media (max-width: 760px) { .header-axes { padding-inline: 16px; } }
+
+/* §16 Escala mínima de tipografía: ningún texto de lectura por debajo de 13 px */
+body .eyebrow, body .section-heading .eyebrow, body .wrap > .eyebrow { font-size: 13px; letter-spacing: .02em; }
+body .hero .eyebrow { font-size: 15px; padding: 9px 16px; }
+body .page-hero .eyebrow { font-size: 14px; padding: 8px 15px; }
+body .breadcrumb, body .card .number, body .step .number, body .hero-path-meta { font-size: 13px; }
+body footer .footer-bottom { font-size: 13px; }
+body .axis-q { font-size: 12px; }
+body .audit-mode, body .audit-footnote, body .audit-steps li, body #audit-progress, body .audit-clear { font-size: 13px; }
+body .audit-eyebrow { font-size: 13px; letter-spacing: .02em; }
+body .tag, body .blog-card .category, body .form-help, body .review-note, body .hero .micro { font-size: 13px; }
+@media (max-width: 760px) {
+  body .hero .eyebrow { font-size: 14px; padding: 8px 13px; }
+  body .page-hero .eyebrow { font-size: 13px; }
+}
+@media (max-width: 560px) { body .audit-steps li { font-size: 12.5px; } }
+@media (max-width: 420px) { body .axis-chip .axis-q { font-size: 12px; } }
+
+/* Ajustes de la escala mínima con mayor especificidad */
+body .site-header nav > .nav-axis .axis-q { font-size: 12px; }
+body .page-hero .breadcrumb, body .hero .breadcrumb, body .breadcrumb.fd-reveal { font-size: 13px; }
+
+/* §17 Titular de la portada más ancho: la columna de texto gana espacio y el titular ocupa todo su ancho */
+@media (min-width: 1081px) {
+  body .hero .hero-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, .82fr); gap: clamp(36px, 4vw, 64px); }
+}
+body .hero h1 { max-width: none; text-wrap: balance; }
+body .hero h1 em { display: block; }
