@@ -1,0 +1,137 @@
+/* Mejoras al diseño actual · 22/11/2026
+   Se carga al final para ajustar sin reescribir site.css, redesign.css ni experience.css. */
+
+/* 1. Tipografía: Bricolage Grotesque en titulares, Poppins en el cuerpo */
+h1, h2, h3, .price, .calc-amount, .footer-actions strong, .demo-node strong {
+  font-family: "Bricolage Grotesque", Poppins, Arial, sans-serif;
+  font-optical-sizing: auto;
+}
+h1 { font-weight: 800; letter-spacing: -0.035em; line-height: 1.02; }
+h2 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
+h3 { font-weight: 700; letter-spacing: -0.02em; }
+.price { font-weight: 700; letter-spacing: -0.03em; }
+
+/* 2. Etiquetas en tipo oración, sin mayúsculas forzadas */
+.eyebrow, .number, .tag, .demo-kicker, .audit-eyebrow {
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 3. Ritmo: menos aire vertical en celular para acortar la página */
+@media (max-width: 760px) {
+  .section { padding-block: 48px !important; }
+  .section-heading { margin-bottom: 32px !important; }
+  .cards { gap: 14px; }
+}
+
+/* 4. Firma de las guías */
+.byline { font-size: 14px; color: #46637a; margin-bottom: 28px; }
+.byline strong { color: var(--night); }
+.por-confirmar { background: #fff3c4; color: #5c4400; padding: 0 4px; border-radius: 3px; }
+.section .por-confirmar { color: #5c4400; }
+
+/* 5. Calculadora */
+.calc-split { align-items: start; }
+.calc-shell {
+  background: rgba(247, 249, 251, 0.035);
+  border: 1px solid rgba(36, 185, 242, 0.22);
+  border-radius: 20px;
+  padding: clamp(20px, 3vw, 32px);
+  color: var(--white);
+}
+.calc-title { font-weight: 600; font-size: 18px; margin: 0 0 18px; color: var(--white) !important; }
+.calc-field { margin-bottom: 18px; }
+.calc-field label { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; margin-bottom: 6px; color: var(--white); }
+.calc-field output { font-weight: 600; color: var(--yellow); min-width: 3ch; text-align: right; }
+.calc-field input[type="range"] { width: 100%; accent-color: var(--yellow); height: 32px; }
+.calc-field input[type="number"], .calc-form input[type="tel"] {
+  width: 100%; box-sizing: border-box; min-height: 48px; padding: 12px 14px;
+  font: inherit; font-size: 17px; color: var(--white);
+  background: rgba(8, 31, 53, 0.6); border: 1px solid var(--line); border-radius: 8px;
+}
+.calc-result {
+  margin: 8px 0 22px; padding: 20px; border-radius: 14px;
+  background: var(--yellow); color: var(--night);
+}
+.calc-result p { margin: 0; color: var(--night) !important; }
+.calc-amount { font-size: clamp(2.4rem, 5vw, 3.4rem) !important; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin: 4px 0 8px !important; }
+.calc-detail { font-size: 14px; }
+.calc-note { font-size: 12px; margin-top: 8px !important; }
+.calc-form { display: flex; flex-direction: column; gap: 10px; }
+.calc-form > label:first-of-type { font-size: 15px; color: var(--white); }
+.calc-consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--muted); cursor: pointer; }
+.calc-consent input { width: 20px; height: 20px; margin-top: 2px; flex: none; accent-color: var(--yellow); }
+.calc-consent a { color: var(--blue); }
+.calc-error { color: #ffb4a8 !important; font-size: 14px; margin: 0; min-height: 1em; }
+.calc-form .button { align-self: flex-start; }
+.calc-form .button:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+.calc-done p { color: var(--muted); }
+
+/* 6. Bloque de Frank en Nosotros */
+.frank-photo { margin: 0; }
+.por-confirmar-box {
+  aspect-ratio: 4 / 5; border: 1px dashed rgba(36, 185, 242, 0.4); border-radius: 20px;
+  display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px;
+  color: var(--muted); background: rgba(247, 249, 251, 0.03);
+}
+.frank-role { color: var(--blue) !important; font-weight: 500; margin-top: -8px; }
+
+/* 7. Acciones en el pie de página */
+.footer-actions {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px;
+  background: rgba(36, 185, 242, 0.18); border: 1px solid rgba(36, 185, 242, 0.18);
+  border-radius: 16px; overflow: hidden; margin-bottom: 44px;
+}
+.footer-actions a {
+  display: flex; flex-direction: column; gap: 6px; padding: 22px 24px;
+  background: var(--night); color: var(--white); text-decoration: none; min-height: 48px;
+}
+.footer-actions a:first-child { background: var(--yellow); color: var(--night); }
+.footer-actions span { font-size: 13px; opacity: 0.8; }
+.footer-actions strong { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
+.footer-actions a:hover strong { text-decoration: underline; }
+
+/* 8. Barra de acciones fija */
+.action-bar {
+  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 50;
+  display: flex; gap: 4px; padding: 5px; border-radius: 12px;
+  background: rgba(8, 31, 53, 0.94); border: 1px solid rgba(36, 185, 242, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px);
+}
+.action-bar a {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px;
+  border-radius: 8px; color: var(--white); text-decoration: none; font-size: 14px; font-weight: 500; white-space: nowrap;
+}
+.action-bar a:hover { background: rgba(36, 185, 242, 0.12); }
+.action-bar .action-main { background: var(--yellow); color: var(--night); font-weight: 600; }
+.action-bar .action-main:hover { background: #ffd65c; }
+.action-bar a:focus-visible, .footer-actions a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+body { padding-bottom: 84px; }
+@media (max-width: 520px) {
+  .action-bar { left: 8px; right: 8px; bottom: 8px; transform: none; }
+  .action-bar a { flex: 1 1 0; padding: 10px 8px; font-size: 13px; }
+}
+@media print { .action-bar { display: none; } }
+
+/* 9. Imágenes con tamaño declarado: que conserven su proporción */
+img.visual-image { height: auto; }
+
+/* 10. Categorías de las guías en tipo oración */
+.blog-card .category { text-transform: none !important; letter-spacing: 0.01em !important; font-size: 13px; }
+
+/* 11. La barra fija aparece al dejar atrás la cabecera (si hay JavaScript) */
+.js-action-bar .action-bar { opacity: 0; transform: translate(-50%, 16px); pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+.js-action-bar .action-bar.is-visible { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+@media (max-width: 520px) {
+  .js-action-bar .action-bar { transform: translateY(16px); }
+  .js-action-bar .action-bar.is-visible { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .js-action-bar .action-bar { transition: none; } }
+
+/* 12. Ajustes tras la revisión */
+.byline { color: var(--muted) !important; }
+.byline strong { color: var(--white) !important; }
+.cards .price { font-size: 2.1rem; color: var(--yellow); margin: 10px 0 14px; }
+.cards .price small { font-family: Poppins, Arial, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--muted); }

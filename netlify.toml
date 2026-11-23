@@ -1,14 +1,40 @@
 [build]
   publish = "site"
 
+# URL anteriores → URL nuevas (22/11/2026)
 [[redirects]]
-  from = "/auditoria/*"
-  to = "/diagnostico/"
+  from = "/servicios/marketing/*"
+  to = "/servicios/marketing-redes-sociales/"
   status = 301
 
 [[redirects]]
-  from = "/auditoria"
-  to = "/diagnostico/"
+  from = "/servicios/sitios-web/*"
+  to = "/servicios/paginas-web/"
+  status = 301
+
+[[redirects]]
+  from = "/servicios/automatizacion/*"
+  to = "/servicios/asistentes-con-ia/"
+  status = 301
+
+[[redirects]]
+  from = "/diagnostico/*"
+  to = "/diagnostico-gratuito/"
+  status = 301
+
+[[redirects]]
+  from = "/auditoria/*"
+  to = "/diagnostico-gratuito/"
+  status = 301
+
+[[redirects]]
+  from = "/agencia/*"
+  to = "/nosotros/"
+  status = 301
+
+[[redirects]]
+  from = "/inversion/*"
+  to = "/servicios/"
   status = 301
 
 [[redirects]]
@@ -26,3 +52,8 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

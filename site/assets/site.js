@@ -86,3 +86,14 @@
     if (element) { element.classList.add('is-visible'); observer.unobserve(element); }
   });
 })();
+
+// Barra de acciones: aparece al dejar atrás la cabecera; siempre visible si recibe el foco.
+(() => {
+  const bar = document.querySelector('.action-bar');
+  if (!bar) return;
+  document.documentElement.classList.add('js-action-bar');
+  const update = () => bar.classList.toggle('is-visible', window.scrollY > Math.min(520, window.innerHeight * 0.6));
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  bar.addEventListener('focusin', () => bar.classList.add('is-visible'));
+})();
