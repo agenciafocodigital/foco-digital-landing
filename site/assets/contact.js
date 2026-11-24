@@ -11,6 +11,8 @@
     if (sending || !form.reportValidity()) return;
     const invalid = [...form.querySelectorAll('[required]')].find(field => field.type !== 'checkbox' && !field.value.trim());
     if (invalid) { invalid.focus(); status.textContent = 'Completa el campo señalado.'; return; }
+    const wa = form.elements.whatsapp;
+    if (wa.value.replace(/\D/g, '').length !== 10) { wa.focus(); status.textContent = 'Escribe tu WhatsApp de 10 dígitos, sin signos.'; return; }
     sending = true; button.disabled = true; button.textContent = 'Enviando…';
     status.textContent = 'Estamos enviando tu solicitud.';
     try {
