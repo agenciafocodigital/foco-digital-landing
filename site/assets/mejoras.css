@@ -258,3 +258,86 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 /* §21 Imagen de portada (mujer tejiendo): encuadre que deja ver el celular y degradado más suave */
 .hero-image .visual-image{object-position:82% 72%}
 .hero-image::after{background:linear-gradient(180deg,transparent 70%,rgba(8,31,53,.14))}
+
+/* §22 Animaciones de servicios: celular + pasos + ficha (estilo aprobado el 24/11/2026) */
+.fd-anim{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.05fr) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:center;margin-top:34px}
+.fd-steps{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.fd-steps li{border:1px solid rgba(247,249,251,.14);border-radius:18px;padding:16px 18px;opacity:.5;transition:opacity .4s,border-color .4s,background .4s}
+.fd-steps li.on{opacity:1;border-color:var(--blue);background:rgba(36,185,242,.08)}
+.fd-steps b{display:block;font-family:"Bricolage Grotesque",Poppins,sans-serif;font-size:21px;color:var(--white)}
+.fd-steps span{color:var(--muted);font-size:15px;line-height:1.5}
+.fd-phone{justify-self:center;width:min(100%,310px);aspect-ratio:9/18;background:#030d17;border-radius:40px;padding:11px;box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 0 0 2px #22384f}
+.fd-screen{position:relative;height:100%;border-radius:30px;background:#0b1d2c;overflow:hidden;display:flex;flex-direction:column;color:var(--white)}
+.fd-top{display:flex;align-items:center;gap:10px;padding:15px 15px 11px;background:#10283d;border-bottom:1px solid rgba(247,249,251,.1)}
+.fd-ava{flex:none;width:32px;height:32px;border-radius:50%;background:var(--yellow);color:var(--night);display:grid;place-items:center;font-weight:600;font-size:13px}
+.fd-top strong{display:block;font-size:14px;line-height:1.2}.fd-top small{color:var(--muted);font-size:12px}
+.fd-chat{flex:1;padding:12px 11px;display:flex;flex-direction:column;gap:7px;justify-content:flex-end;overflow:hidden}
+.fd-msg{max-width:86%;padding:8px 11px 6px;border-radius:15px;font-size:13.5px;line-height:1.4;display:none}
+.fd-msg.in{display:block;animation:fd-pop .35s ease-out}
+.fd-msg time{display:block;text-align:right;font-size:11px;color:var(--muted);margin-top:1px}
+.fd-cli{align-self:flex-start;background:#1a3550;border-bottom-left-radius:4px}
+.fd-bot{align-self:flex-end;background:#0f5a4a;border-bottom-right-radius:4px}
+.fd-typing{align-self:flex-end;background:#0f5a4a;border-radius:15px;padding:11px 13px;gap:4px;display:none}
+.fd-typing.in{display:flex}
+.fd-typing i{width:6px;height:6px;border-radius:50%;background:#cfe;animation:fd-dot 1s infinite}
+.fd-typing i:nth-child(2){animation-delay:.15s}.fd-typing i:nth-child(3){animation-delay:.3s}
+@keyframes fd-dot{0%,80%,100%{opacity:.3;transform:none}40%{opacity:1;transform:translateY(-3px)}}
+@keyframes fd-pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fd-side{display:grid;gap:16px}
+.fd-card{background:rgba(247,249,251,.04);border:1px solid rgba(247,249,251,.14);border-radius:22px;padding:20px}
+.fd-card h3{font-size:20px;margin:0 0 10px;color:var(--white)}
+.fd-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid rgba(247,249,251,.12);font-size:15px;color:var(--muted)}
+.fd-row b{font-weight:500;color:var(--white);text-align:right;opacity:0;transition:opacity .4s}
+.fd-row b.in{opacity:1}
+.fd-done{display:flex;gap:12px;align-items:center;background:var(--yellow);color:var(--night);border-radius:18px;padding:14px 16px;font-weight:600;line-height:1.35;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s}
+.fd-done.in{opacity:1;transform:none}
+.fd-done svg{flex:none}
+.fd-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between}
+.fd-foot .small-text{margin:0}
+.fd-pause{font:600 15px Poppins,sans-serif;min-height:44px;padding:0 20px;border-radius:12px;border:1px solid rgba(247,249,251,.25);background:transparent;color:var(--white);cursor:pointer}
+.fd-pause:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+/* Pantallas que cambian (página web → WhatsApp; búsqueda → ficha) */
+.fd-pane{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s}
+.fd-pane.in{opacity:1;visibility:visible}
+.fd-web{background:#f6f1ea;color:#2b2420}
+.fd-web-bar{font-size:11px;color:#6b625b;background:#e9e1d6;margin:12px 12px 0;border-radius:10px;padding:7px 11px}
+.fd-web-hero{margin:12px;border-radius:16px;padding:18px 16px;background:linear-gradient(160deg,#5f7a62,#3f5743);color:#fff}
+.fd-web-hero strong{display:block;font-family:"Bricolage Grotesque",Poppins,sans-serif;font-size:21px;line-height:1.1}
+.fd-web-hero span{display:block;font-size:12.5px;margin-top:6px;opacity:.9}
+.fd-web-list{margin:2px 12px;display:grid;gap:7px}
+.fd-web-list div{background:#fff;border-radius:12px;padding:9px 12px;font-size:12.5px;display:flex;justify-content:space-between;opacity:.25;transition:opacity .4s}
+.fd-web-list div.in{opacity:1}
+.fd-web-btn{margin:auto 12px 16px;border-radius:14px;background:#1f9d55;color:#fff;font-weight:600;font-size:14px;text-align:center;padding:13px;transition:transform .2s,box-shadow .2s}
+.fd-web-btn.in{transform:scale(.95);box-shadow:0 0 0 6px rgba(31,157,85,.3)}
+.fd-g{background:#fff;color:#202124}
+.fd-g-search{margin:14px 12px 10px;border:1px solid #dadce0;border-radius:24px;padding:10px 14px;font-size:13.5px;display:flex;gap:8px;align-items:center}
+.fd-g-search span{overflow:hidden;white-space:nowrap;border-right:2px solid #1a73e8;width:0;max-width:max-content}
+.fd-g-search span.in{animation:fd-type 1.4s steps(26,end) forwards}
+@keyframes fd-type{to{width:100%}}
+.fd-g-card{margin:0 12px;border:1px solid #e3e5e8;border-radius:16px;overflow:hidden;opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s}
+.fd-g-card.in{opacity:1;transform:none}
+.fd-g-photos{display:grid;grid-template-columns:2fr 1fr;gap:3px;height:96px}
+.fd-g-photos i{background:linear-gradient(150deg,#7f9a7f,#4d6a52)}.fd-g-photos i+i{background:linear-gradient(150deg,#c9a77c,#9a7652)}
+.fd-g-body{padding:11px 13px}
+.fd-g-body strong{font-size:16px}
+.fd-g-body p{margin:3px 0 0;font-size:12.5px;color:#5f6368;line-height:1.4}
+.fd-g-stars{color:#f4b400;letter-spacing:1px}
+.fd-g-open{color:#188038}
+.fd-g-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:0 13px 13px}
+.fd-g-actions span{border:1px solid #dadce0;border-radius:18px;text-align:center;font-size:12px;padding:7px 2px;color:#1a73e8;transition:background .25s,color .25s}
+.fd-g-actions span.in{background:#1a73e8;color:#fff}
+.fd-g-post{margin:10px 12px 0;border-radius:14px;background:#f1f3f4;padding:10px 12px;font-size:12px;color:#3c4043;opacity:0;transition:opacity .4s}
+.fd-g-post.in{opacity:1}
+@media(max-width:900px){.fd-anim{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.fd-steps{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.fd-anim{grid-template-columns:minmax(0,1fr)}.fd-steps{grid-template-columns:minmax(0,1fr)}.fd-steps li{padding:12px 14px}}
+@media(prefers-reduced-motion:reduce){.fd-anim *{transition:none!important;animation:none!important}.fd-g-search span{width:auto;border:0}}
+/* §22b Ajustes: pantallas llenas, botones de la ficha en una línea y pasos compactos en celular */
+.fd-g-photos{height:150px}
+.fd-g-actions span{font-size:11px;white-space:nowrap;padding:7px 0}
+.fd-g-more{margin:12px 12px 0;display:grid;gap:7px;opacity:.55}
+.fd-g-more i{display:block;height:9px;border-radius:5px;background:#e3e5e8}.fd-g-more i:nth-child(2){width:70%}.fd-g-more i:nth-child(3){width:85%}
+.fd-web-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 12px 10px}
+.fd-web-photos i{height:62px;border-radius:10px;background:linear-gradient(150deg,#8aa58b,#5f7a62)}
+.fd-web-photos i:nth-child(2){background:linear-gradient(150deg,#d6b48a,#a8825a)}.fd-web-photos i:nth-child(3){background:linear-gradient(150deg,#b9c4c9,#7d8b92)}
+@media(max-width:600px){.fd-steps{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.fd-steps li{padding:10px 8px;text-align:center}.fd-steps b{font-size:16px}.fd-steps span{display:none}.fd-phone{width:min(100%,290px)}}
+.fd-g-actions{grid-template-columns:.85fr 1.25fr 1fr;gap:5px}
