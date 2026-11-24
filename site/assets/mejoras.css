@@ -343,3 +343,7 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 .fd-g-actions{grid-template-columns:.85fr 1.25fr 1fr;gap:5px}
 
 @media(prefers-reduced-motion:reduce){.fd-pause{display:none}}
+
+/* §23 Nosotros: historia de Frank más amplia y valores en una columna */
+.about-values>div{max-width:760px}
+.frank-section .check-list{margin:6px 0 18px}
