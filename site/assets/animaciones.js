@@ -37,7 +37,7 @@
 
     if (pause) pause.addEventListener('click', () => {
       paused = !paused;
-      pause.textContent = paused ? 'Continuar' : 'Pausar';
+      pause.textContent = paused ? 'Reproducir' : 'Pausar';
       pause.setAttribute('aria-pressed', String(paused));
       if (paused) clear(); else run();
     });
