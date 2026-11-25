@@ -29,16 +29,21 @@
   const form = mount.querySelector('form'), error = mount.querySelector('#audit-error'), result = mount.querySelector('.audit-result');
   const last = steps.length - 1;
   let step = 0, sending = false;
+  const errorHome = error.parentNode, errorNext = error.nextSibling;
 
   function clearErrors() {
     error.textContent = '';
+    if (error.parentNode !== errorHome) errorHome.insertBefore(error, errorNext);
     form.querySelectorAll('[aria-invalid]').forEach(el => { el.removeAttribute('aria-invalid'); el.removeAttribute('aria-describedby'); });
   }
   function fail(field, message) {
     error.textContent = message;
     field.setAttribute('aria-invalid', 'true');
     field.setAttribute('aria-describedby', 'audit-error');
+    const fs = field.type === 'radio' ? field.closest('fieldset') : null;
+    if (fs) fs.appendChild(error);
     field.focus();
+    (fs || field).scrollIntoView({ block: 'center' });
   }
   function show(focus = false) {
     mount.querySelectorAll('.audit-step').forEach((s, i) => s.hidden = i !== step);
@@ -102,11 +107,12 @@
     const negocio = String(fd.get('negocio') || '').trim();
     const texto = encodeURIComponent(`Hola, hice el autodiagnóstico de ${negocio}. Me gustaría agendar mi diagnóstico gratuito.`);
     form.hidden = true; result.hidden = false;
+    mount.querySelector('.audit-steps').hidden = true; mount.querySelector('#audit-progress').hidden = true;
     const h = document.createElement('h2'); h.tabIndex = -1; h.textContent = 'Tu resultado';
     result.appendChild(h);
     r.textos.forEach(t => { const p = document.createElement('p'); p.textContent = t; result.appendChild(p); });
     const p2 = document.createElement('p');
-    p2.textContent = 'Te escribimos por WhatsApp en menos de un día hábil para agendar. Si prefieres, agenda tú ahora:';
+    p2.textContent = 'Te escribimos de inmediato por WhatsApp para agendar. Si prefieres, agenda tú ahora:';
     result.appendChild(p2);
     const a = document.createElement('a');
     a.className = 'button dark'; a.href = `https://wa.me/${WA}?text=${texto}`; a.target = '_blank'; a.rel = 'noopener noreferrer';

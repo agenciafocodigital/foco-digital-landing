@@ -352,3 +352,9 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 .related{margin-top:28px;padding-top:18px;border-top:1px solid rgba(247,249,251,.14)}
 /* §25 Que la barra fija inferior no tape el campo con foco */
 @media(max-width:900px){html{scroll-padding-bottom:96px}}
+/* §26 Auditoría final: 404 centrada, pasos del autodiagnóstico a 13 px, firma enlazada */
+.actions-center{justify-content:center}
+.audit-steps li{font-size:13px}
+.byline a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.fd-caption{display:none}
+@media(max-width:600px){.fd-caption{display:block;grid-column:1/-1;margin:-6px 0 0;color:var(--muted);font-size:15px;line-height:1.5;min-height:3em;text-align:center}.fd-steps li{display:flex;align-items:center;justify-content:center}}
