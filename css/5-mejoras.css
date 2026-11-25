@@ -346,3 +346,43 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 .hero-path:not(.hero-path-main){justify-content:flex-end}
 @media(max-width:700px){.hero-paths{grid-template-columns:minmax(0,1fr)}}
 .hero-path:not(.hero-path-main) .hero-path-link{font-size:17px;white-space:nowrap}
+
+/* §29 Encabezado de la portada: las dos rutas con el mismo formato; calculadora en portada; recordatorio del cálculo */
+.hero-paths{grid-template-columns:repeat(2,minmax(0,1fr))}
+.hero-path-alt .hero-path-link{background:transparent;color:var(--yellow);border:2px solid var(--yellow);white-space:normal}
+.hero-path-alt:hover .hero-path-link{background:rgba(255,201,40,.1);color:var(--yellow)}
+.hero-path-main .hero-path-q{font-size:20px}
+.calc-clients{font-family:"Bricolage Grotesque",Poppins,sans-serif;font-weight:800;font-size:clamp(28px,4vw,40px);color:var(--yellow);margin:2px 0 0;line-height:1.1}
+.recall-card{max-width:820px;margin:0 auto;text-align:center;border:1px solid rgba(255,201,40,.45);border-radius:22px;padding:clamp(24px,4vw,44px);background:rgba(255,201,40,.05)}
+.recall-card .actions{justify-content:center;align-items:center;gap:18px;flex-wrap:wrap}
+.meta-note{margin-top:12px;opacity:.9}
+
+/* §30 Web: tarjetas de precio por tipo de página y lista común */
+.price-cards .price-card{display:flex;flex-direction:column}
+.price-cards .price-card p:not(.price):not(.eyebrow):not(.price-meta){flex:1 1 auto}
+.price-cards .price-card .button{margin-top:18px;align-self:flex-start}
+.price-meta{font-size:13px;color:var(--muted);margin:10px 0 0}
+.includes{margin-top:34px;max-width:880px}
+.includes h3{margin-bottom:10px}
+.steps .step .number{white-space:nowrap}
+
+/* §31 Resultado del autodiagnóstico por área */
+.audit-result .res-area{border:1px solid rgba(247,249,251,.16);border-radius:16px;padding:18px 20px;margin:14px 0;background:rgba(247,249,251,.03)}
+.res-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 6px}
+.res-head strong{font-family:"Bricolage Grotesque",Poppins,sans-serif;font-size:19px}
+.res-badge{font-size:13px;font-weight:600;padding:4px 12px;border-radius:999px;white-space:nowrap}
+.res-bien .res-badge{background:rgba(36,185,242,.16);color:#7fd6f7}
+.res-mejorable .res-badge{background:rgba(255,201,40,.18);color:var(--yellow)}
+.res-urgente{border-color:rgba(255,122,89,.55)!important}
+.res-urgente .res-badge{background:rgba(255,122,89,.18);color:#ffa58e}
+.res-list{margin:8px 0;padding-left:20px}
+.res-list li{margin:4px 0}
+.res-serv{margin:10px 0 0;font-weight:500}
+.res-serv a{color:var(--blue)}
+.res-estimacion{border-radius:16px;padding:18px 20px;margin:14px 0;background:rgba(255,201,40,.08);border:1px solid rgba(255,201,40,.4)}
+.res-monto{font-family:"Bricolage Grotesque",Poppins,sans-serif;font-weight:800;font-size:clamp(22px,3vw,30px);color:var(--yellow);margin:4px 0}
+.req{color:var(--yellow);font-weight:700}
+.form-note{font-size:14px;color:var(--muted);margin:0 0 14px}
+.hero-path-main .hero-path-link{font-size:15px;padding:11px 16px;white-space:nowrap}
+.hero-path-main .hero-path-q{font-size:19px}
+@media(max-width:380px){.hero-path-main .hero-path-link{white-space:normal}}

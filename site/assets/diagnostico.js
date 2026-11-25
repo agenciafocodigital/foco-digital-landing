@@ -9,22 +9,27 @@
     `<label for="${id}">${label}</label><input id="${id}" name="${id}" type="${type}" ${extra}>`;
 
   const steps = [
-    { title: 'Cómo atiendes a tus clientes', short: 'Tus mensajes', html:
-      radios('canal', '1. ¿Por dónde te contactan más tus clientes?', ['WhatsApp', 'Instagram', 'Facebook', 'Llamada', 'En persona']) +
-      radios('mensajes', '2. ¿Cuántos mensajes recibes en un día normal?', ['Menos de 10', '10 a 30', '30 a 60', 'Más de 60']) +
-      radios('tiempo', '3. ¿Cuánto tardas normalmente en contestar?', ['Menos de 15 minutos', 'Menos de 1 hora', 'Varias horas', 'Al día siguiente o más']) +
-      radios('quien', '4. ¿Quién contesta los mensajes?', ['Yo', 'Alguien del equipo que también hace otras tareas', 'Una persona solo para eso']) +
-      radios('perdidas', '5. En el último mes, ¿perdiste alguna venta, cita o reserva por no contestar a tiempo o no dar seguimiento?', ['Sí, varias', 'Sí, alguna', 'No', 'No sé']) },
-    { title: 'Cómo te encuentran y tus datos', short: 'Tus datos', html:
-      radios('encuentran', '6. ¿Cómo te encuentran tus clientes nuevos?', ['Recomendación', 'Redes sociales', 'Google', 'Pasan por el local', 'Otro']) +
-      radios('presencia', '7. ¿Tu negocio tiene ficha de Google con horario y fotos, y sitio web?', ['Ambos', 'Solo ficha', 'Solo sitio', 'Ninguno', 'No sé']) +
+    { title: 'Cómo te encuentran', short: 'Visibilidad', html:
+      radios('encuentran', '1. ¿Cómo llegan a ti la mayoría de tus clientes nuevos?', ['Por recomendación', 'Por redes sociales', 'Por Google o Google Maps', 'Pasan por mi local', 'No sé']) +
+      radios('google', '2. Si alguien busca tu negocio en Google, ¿qué encuentra?', ['Mi ficha con horario, fotos y reseñas', 'Una ficha incompleta o desactualizada', 'No aparezco', 'No sé']) +
+      radios('web', '3. ¿Tienes página web?', ['Sí, y me trae clientes', 'Sí, pero casi no me trae clientes', 'No tengo']) +
+      radios('redes', '4. ¿Cada cuánto publicas en tus redes sociales?', ['Cada semana', 'A veces', 'Casi nunca', 'No tengo redes']) },
+    { title: 'Cuánto tiempo te lleva atender', short: 'Atención', html:
+      radios('canal', '5. ¿Por dónde te escriben más tus clientes?', ['WhatsApp', 'Instagram', 'Facebook', 'Llamada', 'En persona']) +
+      radios('mensajes', '6. ¿Cuántos mensajes recibes en un día normal?', ['Menos de 10', '10 a 30', '30 a 60', 'Más de 60']) +
+      radios('tiempo', '7. ¿Cuánto tardas normalmente en contestar?', ['Menos de 15 minutos', 'Menos de 1 hora', 'Varias horas', 'Al día siguiente o más']) +
+      radios('horas', '8. ¿Cuánto tiempo al día dedicas a contestar mensajes?', ['Menos de 1 hora', '1 a 3 horas', 'Más de 3 horas']) +
+      radios('perdidas', '9. En el último mes, ¿cuántas ventas, citas o reservas perdiste por no contestar a tiempo o no dar seguimiento?', ['Ninguna', '1 a 3', '4 a 10', 'Más de 10', 'No sé']) +
+      radios('ticket', '10. ¿Cuánto deja en promedio cada venta o servicio?', ['Menos de $500', '$500 a $2,000', '$2,000 a $10,000', 'Más de $10,000']) },
+    { title: 'Tus datos', short: 'Tus datos', html:
+      radios('giro', '¿A qué se dedica tu negocio?', ['Comida y bebidas', 'Salud y bienestar', 'Servicios profesionales', 'Tienda o productos', 'Otro']) +
       `<fieldset><legend>¿A quién le mandamos tu resultado?</legend>${input('nombre', 'Tu nombre', 'text', 'required maxlength="120" autocomplete="name"')}${input('negocio', 'Nombre de tu negocio', 'text', 'required maxlength="160" autocomplete="organization"')}${input('whatsapp', 'Tu WhatsApp (10 dígitos)', 'tel', 'required inputmode="numeric" maxlength="13" autocomplete="tel" pattern="(?:[0-9] ?){9}[0-9]"')}${input('email', 'Correo electrónico (opcional)', 'email', 'maxlength="180" autocomplete="email"')}
       <div class="audit-local-notice"><strong>Tus datos llegan a Foco Digital.</strong><p>Los usamos solo para darte tu resultado y contactarte sobre tu diagnóstico. Consulta el <a href="/privacidad/">aviso de privacidad</a>. No incluyas datos de tus clientes.</p></div>
       <label class="audit-choice"><input name="privacyConsent" type="checkbox" required><span>Leí el aviso de privacidad y acepto que me contacten para darme mi resultado.</span></label>
       <label class="audit-choice"><input name="marketingConsent" type="checkbox"><span>Quiero recibir consejos y novedades de Foco Digital (opcional).</span></label></fieldset>` }
   ];
 
-  mount.innerHTML = `<div class="audit-shell"><div class="audit-top"><span class="audit-eyebrow">Autodiagnóstico</span><span class="audit-mode">3 minutos · gratuito</span></div><p>Siete preguntas sobre cómo te encuentran tus clientes y cómo les respondes. Al terminar ves tu resultado y puedes agendar tu diagnóstico.</p><ol class="audit-steps" aria-label="Pasos del autodiagnóstico">${steps.map((s, i) => `<li data-step-label="${i}"><span>${i + 1}</span> ${s.short}</li>`).join('')}</ol><p id="audit-progress" role="status"></p><form name="${FORM}" method="POST" novalidate><input type="hidden" name="form-name" value="${FORM}"><p hidden><label>No completar <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>${steps.map((s, i) => `<section class="audit-step" data-step="${i}" ${i ? 'hidden' : ''}><h2 tabindex="-1">${s.title}</h2>${s.html}</section>`).join('')}<p id="audit-error" role="alert" class="audit-error"></p><div class="audit-actions"><button type="button" class="audit-back">Anterior</button><button type="submit" class="audit-next">Continuar</button></div><p class="audit-footnote">Tus respuestas se envían a Foco Digital solo cuando terminas y autorizas el envío.</p></form><div class="audit-result" hidden aria-live="polite"></div></div>`;
+  mount.innerHTML = `<div class="audit-shell"><div class="audit-top"><span class="audit-eyebrow">Autodiagnóstico</span><span class="audit-mode">3 minutos · gratuito</span></div><p>Diez preguntas sobre cómo te encuentran tus clientes y cuánto tiempo te lleva atenderlos. Al terminar ves cómo está tu negocio, qué te está costando y cómo resolverlo.</p><ol class="audit-steps" aria-label="Pasos del autodiagnóstico">${steps.map((s, i) => `<li data-step-label="${i}"><span>${i + 1}</span> ${s.short}</li>`).join('')}</ol><p id="audit-progress" role="status"></p><form name="${FORM}" method="POST" novalidate><input type="hidden" name="form-name" value="${FORM}"><p hidden><label>No completar <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>${steps.map((s, i) => `<section class="audit-step" data-step="${i}" ${i ? 'hidden' : ''}><h2 tabindex="-1">${s.title}</h2>${s.html}</section>`).join('')}<p id="audit-error" role="alert" class="audit-error"></p><div class="audit-actions"><button type="button" class="audit-back">Anterior</button><button type="submit" class="audit-next">Continuar</button></div><p class="audit-footnote">Tus respuestas se envían a Foco Digital solo cuando terminas y autorizas el envío.</p></form><div class="audit-result" hidden aria-live="polite"></div></div>`;
 
   const form = mount.querySelector('form'), error = mount.querySelector('#audit-error'), result = mount.querySelector('.audit-result');
   const last = steps.length - 1;
@@ -58,17 +63,46 @@
   form.addEventListener('input', clearErrors);
   mount.querySelector('.audit-back').addEventListener('click', () => { if (step > 0) { step--; show(true); } });
 
+  const money = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
+  const nivel = (p, urg) => p === 0 ? 'Bien' : p >= urg ? 'Urgente' : 'Mejorable';
   function resultado(d) {
-    const resp = ['Varias horas', 'Al día siguiente o más'].includes(d.get('tiempo')) || String(d.get('perdidas')).startsWith('Sí');
-    const vis = ['Recomendación', 'Pasan por el local'].includes(d.get('encuentran')) || ['Ninguno', 'No sé'].includes(d.get('presencia'));
-    const mResp = 'Tu negocio podría estar perdiendo clientes por tiempo de respuesta. En el diagnóstico gratuito revisamos cuántos y cómo evitarlo.';
-    const mVis = 'A tu negocio le cuesta que lo encuentren clientes nuevos. En el diagnóstico gratuito revisamos dónde te buscan y qué falta.';
-    const mOk = 'Tu atención y tu visibilidad van bien. Si quieres, en el diagnóstico gratuito buscamos qué más se puede mejorar.';
-    if (resp && vis) return { clave: 'Ambos', textos: [mResp, mVis] };
-    if (resp) return { clave: 'Respuesta y seguimiento', textos: [mResp] };
-    if (vis) return { clave: 'Visibilidad', textos: [mVis] };
-    return { clave: 'Sin dolor evidente', textos: [mOk] };
+    const g = k => String(d.get(k) || '');
+    // Visibilidad
+    const huecos = [];
+    let pv = 0;
+    if (['Por recomendación', 'Pasan por mi local', 'No sé'].includes(g('encuentran'))) { pv += 1; huecos.push('Casi ningún cliente nuevo llega por internet.'); }
+    if (['No aparezco', 'No sé'].includes(g('google'))) { pv += 2; huecos.push('Si te buscan en Google, no te encuentran.'); }
+    else if (g('google').startsWith('Una ficha incompleta')) { pv += 1; huecos.push('Tu ficha de Google está incompleta o desactualizada.'); }
+    const webHueco = g('web') !== 'Sí, y me trae clientes';
+    if (webHueco) { pv += 1; huecos.push(g('web') === 'No tengo' ? 'No tienes página web que explique lo que ofreces.' : 'Tu página web casi no te trae clientes.'); }
+    const redesHueco = ['Casi nunca', 'No tengo redes'].includes(g('redes'));
+    if (redesHueco) { pv += 1; huecos.push('Publicas poco en tus redes sociales.'); }
+    const vis = nivel(pv, 3);
+    const visServ = [];
+    if (pv && (pv - (webHueco ? 1 : 0)) > 0) visServ.push(['Visibilidad: redes sociales y ficha de Google', '/servicios/redes-sociales-google/']);
+    if (webHueco) visServ.push(['Web: una página que lleva a tus clientes a WhatsApp', '/servicios/sitios-web/']);
+    // Atención
+    const datos = [];
+    let pa = 0;
+    const t = g('tiempo');
+    if (t === 'Al día siguiente o más') pa += 3; else if (t === 'Varias horas') pa += 2;
+    else if (t === 'Menos de 1 hora' && g('mensajes') !== 'Menos de 10') pa += 1;
+    if (t) datos.push(`Tardas ${t.toLowerCase()} en contestar.`);
+    if (g('horas') === '1 a 3 horas') pa += 1; else if (g('horas') === 'Más de 3 horas') pa += 2;
+    if (g('horas')) datos.push(`Dedicas ${/^\d/.test(g('horas')) ? 'de ' : ''}${g('horas').toLowerCase()} al día a contestar mensajes.`);
+    const perd = { '1 a 3': [1, 3, 1], '4 a 10': [4, 10, 2], 'Más de 10': [10, null, 3], 'No sé': [null, null, 1] }[g('perdidas')];
+    if (perd) { pa += perd[2]; if (perd[0]) datos.push(`El mes pasado perdiste ${/^\d/.test(g('perdidas')) ? 'de ' : ''}${g('perdidas').toLowerCase()} ventas, citas o reservas.`); }
+    const aten = nivel(pa, 3);
+    // Estimación con sus respuestas
+    let estimacion = '';
+    const tk = { 'Menos de $500': [null, 500], '$500 a $2,000': [500, 2000], '$2,000 a $10,000': [2000, 10000], 'Más de $10,000': [10000, null] }[g('ticket')];
+    if (perd && perd[0] && tk) {
+      const lo = tk[0] ? perd[0] * tk[0] : null, hi = perd[1] && tk[1] ? perd[1] * tk[1] : null;
+      estimacion = lo && hi ? `entre ${money.format(lo)} y ${money.format(hi)} al mes` : lo ? `más de ${money.format(lo)} al mes` : hi ? `hasta ${money.format(hi)} al mes` : '';
+    }
+    return { vis, aten, huecos, visServ, datos, estimacion, clave: `Visibilidad: ${vis} · Atención: ${aten}` };
   }
+
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -92,12 +126,13 @@
     const body = new URLSearchParams(fd);
     body.set('form-name', FORM);
     body.set('resultado', r.clave);
+    body.set('perdida_estimada', r.estimacion || 'Sin estimación');
     const next = mount.querySelector('.audit-next');
     sending = true; next.disabled = true; next.textContent = 'Enviando…';
     try {
       const response = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() });
       if (!response.ok) throw new Error('Submission rejected');
-      (window.dataLayer = window.dataLayer || []).push({ event: 'autodiagnostico_envio', resultado: r.clave });
+      (window.dataLayer = window.dataLayer || []).push({ event: 'autodiagnostico_envio' });
       if (typeof window.gtag === 'function') window.gtag('event', 'autodiagnostico_envio');
     } catch {
       error.textContent = 'No pudimos enviar tus respuestas. Siguen aquí para volver a intentarlo. También puedes escribirnos por WhatsApp al 56 1876 5291.';
@@ -105,18 +140,35 @@
       return;
     }
     const negocio = String(fd.get('negocio') || '').trim();
-    const texto = encodeURIComponent(`Hola, hice el autodiagnóstico de ${negocio}. Me gustaría agendar mi diagnóstico gratuito.`);
+    const texto = encodeURIComponent(`Hola, hice el autodiagnóstico de ${negocio}. Mi resultado: ${r.clave}. Me gustaría agendar mi diagnóstico gratuito.`);
     form.hidden = true; result.hidden = false;
     mount.querySelector('.audit-steps').hidden = true; mount.querySelector('#audit-progress').hidden = true;
-    const h = document.createElement('h2'); h.tabIndex = -1; h.textContent = 'Tu resultado';
-    result.appendChild(h);
-    r.textos.forEach(t => { const p = document.createElement('p'); p.textContent = t; result.appendChild(p); });
-    const p2 = document.createElement('p');
-    p2.textContent = 'Te escribimos de inmediato por WhatsApp para agendar. Si prefieres, agenda tú ahora:';
-    result.appendChild(p2);
-    const a = document.createElement('a');
-    a.className = 'button dark'; a.href = `https://wa.me/${WA}?text=${texto}`; a.target = '_blank'; a.rel = 'noopener noreferrer';
-    a.textContent = 'Agendar mi diagnóstico por WhatsApp';
+    const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; };
+    const h = el('h2', '', 'Así está tu negocio'); h.tabIndex = -1; result.appendChild(h);
+    const area = (titulo, estado, intro, puntos, servicios, servTitulo) => {
+      const box = el('div', `res-area res-${estado.toLowerCase()}`);
+      const head = el('p', 'res-head'); head.append(el('strong', '', titulo), el('span', 'res-badge', estado)); box.appendChild(head);
+      box.appendChild(el('p', '', intro));
+      if (puntos.length) { const ul = el('ul', 'res-list'); puntos.forEach(x => ul.appendChild(el('li', '', x))); box.appendChild(ul); }
+      if (servicios.length) {
+        const p = el('p', 'res-serv', servTitulo + ' ');
+        servicios.forEach(([n, u], i) => { const a = el('a', '', n); a.href = u; if (i) p.append(' · '); p.appendChild(a); });
+        box.appendChild(p);
+      }
+      result.appendChild(box);
+    };
+    const introVis = { Bien: 'Tu negocio se ve bien en internet. Mantenerlo al día te ayuda a seguir así.', Mejorable: 'Te pueden encontrar, pero hay huecos. Cada hueco es un cliente que termina con otro negocio:', Urgente: 'Cuando un cliente nuevo te busca en internet, lo más probable es que encuentre primero a otros negocios:' }[r.vis];
+    const introAten = { Bien: 'Respondes a tiempo. Si tus mensajes crecen, un asistente con IA te ayuda a mantener ese ritmo.', Mejorable: 'Contestas, pero se te va tiempo o se escapa alguna venta:', Urgente: 'Tardar en contestar te está costando clientes: quien no recibe respuesta pronto suele escribirle a otro negocio.' }[r.aten];
+    area('Visibilidad', r.vis, introVis, r.huecos, r.visServ, 'Lo resolvemos con:');
+    area('Atención a tus clientes', r.aten, introAten, r.datos, r.aten === 'Bien' ? [] : [['Asistentes de IA: un asistente que responde por ti en WhatsApp', '/servicios/asistente-whatsapp-ia/']], 'Lo resolvemos con:');
+    if (r.estimacion) {
+      const est = el('div', 'res-estimacion');
+      est.append(el('p', '', 'Con tus respuestas, lo que dejas de vender por no contestar a tiempo podría ser'), el('p', 'res-monto', r.estimacion), el('p', 'small-text', 'Estimación con los rangos que elegiste; no es una promesa de resultados.'));
+      result.appendChild(est);
+    }
+    result.appendChild(el('p', '', 'Te escribimos de inmediato por WhatsApp para agendar una llamada gratuita de 30 minutos y revisar juntos qué te conviene. Si prefieres, agenda tú ahora:'));
+    const a = el('a', 'button yellow', 'Agendar mi diagnóstico por WhatsApp');
+    a.href = `https://wa.me/${WA}?text=${texto}`; a.target = '_blank'; a.rel = 'noopener noreferrer';
     result.appendChild(a);
     h.focus();
   });

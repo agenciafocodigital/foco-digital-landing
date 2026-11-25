@@ -93,3 +93,21 @@ document.addEventListener('click', function (e) {
   var a = e.target.closest && e.target.closest('a[href*="wa.me"]');
   if (a && typeof window.gtag === 'function') window.gtag('event', 'whatsapp_clic', { ubicacion: location.pathname });
 });
+
+// Asistentes de IA: muestra el último cálculo del visitante (guardado solo en su navegador) o invita a hacerlo.
+(() => {
+  const card = document.querySelector('[data-recall]');
+  if (!card) return;
+  let dato = null;
+  try { dato = JSON.parse(localStorage.getItem('focoCalculo') || 'null'); } catch (e) { dato = null; }
+  if (!dato || !(dato.mes > 0) || Date.now() - dato.fecha > 90 * 864e5) return;
+  const money = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
+  const n = Math.max(1, Math.round(dato.ventas));
+  card.querySelector('[data-recall-title]').textContent = `Con tus números, podrías estar perdiendo ${n} ${n === 1 ? 'cliente' : 'clientes'} al mes.`;
+  card.querySelector('[data-recall-text]').textContent = `Son unos ${money.format(dato.mes)} al mes (${money.format(dato.mes * 12)} al año). Un asistente con IA responde al momento, a cualquier hora, para que esos mensajes no se pierdan.`;
+  const cta = card.querySelector('[data-recall-cta]');
+  cta.textContent = 'Cotizar mi asistente';
+  cta.href = '/contacto/?servicio=automatizacion';
+  card.querySelector('[data-recall-again]').hidden = false;
+  card.querySelector('[data-recall-note]').hidden = false;
+})();

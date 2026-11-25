@@ -9,7 +9,7 @@
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (sending || !form.reportValidity()) return;
-    const invalid = [...form.querySelectorAll('[required]')].find(field => field.type !== 'checkbox' && !field.value.trim());
+    const invalid = [...form.querySelectorAll('[required]')].find(field => field.type !== 'checkbox' && !String(field.value || '').trim());
     if (invalid) { invalid.focus(); status.textContent = 'Completa el campo señalado.'; return; }
     const wa = form.elements.whatsapp;
     if (wa.value.replace(/\D/g, '').length !== 10) { wa.focus(); status.textContent = 'Escribe tu WhatsApp de 10 dígitos, sin signos.'; return; }

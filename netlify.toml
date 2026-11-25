@@ -16,7 +16,7 @@
 
 [[redirects]]
   from = "/agencia/*"
-  to = "/nosotros/"
+  to = "/sobre-foco-digital/"
   status = 301
 
 [[redirects]]

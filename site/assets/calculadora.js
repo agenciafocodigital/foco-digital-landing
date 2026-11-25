@@ -1,4 +1,4 @@
-/* Calculadora "¿Cuánto pierdes por no responder a tiempo?" · Foco Digital
+/* Calculadora "¿Cuántos clientes pierdes por no responder a tiempo?" · Foco Digital
    Estimación con los números del visitante. Envía el resultado a Netlify Forms solo si la persona
    escribe su WhatsApp y acepta el aviso de privacidad. */
 (() => {
@@ -26,7 +26,8 @@
         <input id="calc-ticket" name="calc-ticket" type="number" inputmode="numeric" min="0" step="50" value="500">
       </div>
       <div class="calc-result" aria-live="polite">
-        <p>Podrías estar dejando de vender cada mes</p>
+        <p>Podrías estar perdiendo cada mes</p>
+        <p class="calc-clients" id="calc-clientes">0 clientes</p>
         <p class="calc-amount" id="calc-mes">$0</p>
         <p class="calc-detail" id="calc-detalle"></p>
         <p class="calc-note">Estimación con los números que tú pones; no es una promesa de resultados.</p>
@@ -56,6 +57,7 @@
   const submit = form.querySelector('button[type="submit"]');
   const error = $('#calc-error');
   let last = null;
+  let tocada = false;
 
   function calcular() {
     const mensajes = Number(inputs.mensajes.value) || 0;
@@ -68,10 +70,14 @@
     $('#calc-mensajes-out').value = mensajes;
     $('#calc-tarde-out').value = tarde;
     $('#calc-compran-out').value = compran;
+    $('#calc-clientes').textContent = `${num.format(ventas)} ${ventas === 1 ? 'cliente' : 'clientes'}`;
     $('#calc-mes').textContent = money.format(mes);
     $('#calc-detalle').textContent =
-      `${num.format(perdidos)} mensajes sin respuesta a tiempo al mes · ${num.format(ventas)} ventas que podrían cerrarse · ${money.format(mes * 12)} al año`;
-    last = { mensajes, tarde, compran, ticket, perdidos, mes };
+      `${num.format(perdidos)} mensajes sin respuesta a tiempo al mes · ${money.format(mes * 12)} al año`;
+    last = { mensajes, tarde, compran, ticket, perdidos, ventas, mes };
+    if (tocada) {
+      try { localStorage.setItem('focoCalculo', JSON.stringify({ ventas, mes, fecha: Date.now() })); } catch (e) { /* sin almacenamiento */ }
+    }
   }
 
   const telefono = () => phone.value.replace(/\D/g, '');
@@ -79,7 +85,7 @@
     submit.disabled = !(consent.checked && telefono().length === 10);
   }
 
-  Object.values(inputs).forEach((el) => el.addEventListener('input', calcular));
+  Object.values(inputs).forEach((el) => el.addEventListener('input', () => { tocada = true; calcular(); }));
   phone.addEventListener('input', () => { error.textContent = ''; validar(); });
   consent.addEventListener('change', validar);
 
@@ -114,7 +120,7 @@
       if (!res.ok) throw new Error(String(res.status));
       (window.dataLayer = window.dataLayer || []).push({ event: 'calculadora_envio', estimacion_mes: last.mes });
       if (typeof window.gtag === 'function') window.gtag('event', 'calculadora_envio');
-      const texto = `Hola, usé la calculadora de Foco Digital. Recibo ${last.mensajes} mensajes a la semana y calculé ${money.format(last.mes)} al mes en ventas que podría estar perdiendo. Quiero revisar cómo no perderlas.`;
+      const texto = `Hola, usé la calculadora de Foco Digital. Recibo ${last.mensajes} mensajes a la semana y calculé ${money.format(last.mes)} al mes en ventas que podría estar perdiendo (unos ${last.ventas} clientes). Quiero revisar cómo no perderlas.`;
       $('#calc-wa').href = `https://wa.me/${WA}?text=${encodeURIComponent(texto)}`;
       form.hidden = true;
       const done = $('.calc-done');
