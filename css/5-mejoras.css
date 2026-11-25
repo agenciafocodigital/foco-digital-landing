@@ -336,3 +336,13 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 @media(max-width:1000px){.cards-3{grid-template-columns:minmax(0,1fr)}}
 .cards-3 h3{text-wrap:balance}
 .cards-3 .card p{flex:1 1 auto}.cards-3 .card a{margin-top:0}
+
+/* §28 Portada: el autodiagnóstico es la ruta principal del encabezado */
+.hero-paths{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:stretch}
+.hero-path-main .hero-path-q{font-family:"Bricolage Grotesque",Poppins,sans-serif;font-size:21px;font-weight:700;line-height:1.2;color:var(--white);text-wrap:balance;margin-bottom:8px}
+.hero-path-main .hero-path-link{align-self:flex-start;background:var(--yellow);color:var(--night);text-decoration:none;font-size:17px;padding:12px 20px;border-radius:10px;min-height:44px;display:inline-flex;align-items:center}
+.hero-path-main:hover .hero-path-link{background:#ffd65c;color:var(--night)}
+.hero-path-main .hero-path-meta{margin-top:4px}
+.hero-path:not(.hero-path-main){justify-content:flex-end}
+@media(max-width:700px){.hero-paths{grid-template-columns:minmax(0,1fr)}}
+.hero-path:not(.hero-path-main) .hero-path-link{font-size:17px;white-space:nowrap}
