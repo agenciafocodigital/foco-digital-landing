@@ -100,7 +100,8 @@ document.addEventListener('click', function (e) {
   if (!card) return;
   let dato = null;
   try { dato = JSON.parse(localStorage.getItem('focoCalculo') || 'null'); } catch (e) { dato = null; }
-  if (!dato || !(dato.mes > 0) || Date.now() - dato.fecha > 90 * 864e5) return;
+  const ok = dato && typeof dato === 'object' && [dato.mes, dato.ventas, dato.fecha].every(Number.isFinite);
+  if (!ok || !(dato.mes > 0) || dato.fecha > Date.now() || Date.now() - dato.fecha > 90 * 864e5) return;
   const money = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN', maximumFractionDigits: 0 });
   const n = Math.max(1, Math.round(dato.ventas));
   card.querySelector('[data-recall-title]').textContent = `Con tus números, podrías estar perdiendo ${n} ${n === 1 ? 'cliente' : 'clientes'} al mes.`;

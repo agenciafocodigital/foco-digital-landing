@@ -345,10 +345,10 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 .hero-path-main .hero-path-meta{margin-top:4px}
 .hero-path:not(.hero-path-main){justify-content:flex-end}
 @media(max-width:700px){.hero-paths{grid-template-columns:minmax(0,1fr)}}
-.hero-path:not(.hero-path-main) .hero-path-link{font-size:17px;white-space:nowrap}
+.hero-path:not(.hero-path-main):not(.hero-path-alt) .hero-path-link{font-size:17px;white-space:nowrap}
 
 /* §29 Encabezado de la portada: las dos rutas con el mismo formato; calculadora en portada; recordatorio del cálculo */
-.hero-paths{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:701px){.hero-paths{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .hero-path-alt .hero-path-link{background:transparent;color:var(--yellow);border:2px solid var(--yellow);white-space:normal}
 .hero-path-alt:hover .hero-path-link{background:rgba(255,201,40,.1);color:var(--yellow)}
 .hero-path-main .hero-path-q{font-size:20px}
@@ -383,6 +383,16 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 .res-monto{font-family:"Bricolage Grotesque",Poppins,sans-serif;font-weight:800;font-size:clamp(22px,3vw,30px);color:var(--yellow);margin:4px 0}
 .req{color:var(--yellow);font-weight:700}
 .form-note{font-size:14px;color:var(--muted);margin:0 0 14px}
-.hero-path-main .hero-path-link{font-size:15px;padding:11px 16px;white-space:nowrap}
+.hero-path-main .hero-path-link{font-size:15px;padding:11px 16px;white-space:normal}
 .hero-path-main .hero-path-q{font-size:19px}
 @media(max-width:380px){.hero-path-main .hero-path-link{white-space:normal}}
+
+/* §32 Ajustes de la auditoría del 24/11/2026 */
+@media(min-width:1200px){.hero-path-main .hero-path-link{white-space:nowrap}}
+@media(max-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:600px){.steps{grid-template-columns:minmax(0,1fr)!important}}
+.service-detail aside{background:rgba(247,249,251,.04);border:1px solid rgba(255,201,40,.35);border-radius:20px;padding:24px;align-self:start}
+.service-detail aside .price{color:var(--yellow)}
+@media(max-width:700px){.audit-panel .audit-line{flex-direction:column;align-items:flex-start;gap:4px}.audit-panel .audit-line span:last-child{text-align:left}}
+.audit-panel .audit-line span:last-child{font-size:14px}
+#audit-app [aria-invalid="true"]{outline:2px solid #ffa58e;outline-offset:2px}

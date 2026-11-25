@@ -8,7 +8,8 @@
   let sending = false;
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (sending || !form.reportValidity()) return;
+    if (sending) return;
+    if (!form.reportValidity()) { status.textContent = ''; return; }
     const invalid = [...form.querySelectorAll('[required]')].find(field => field.type !== 'checkbox' && !String(field.value || '').trim());
     if (invalid) { invalid.focus(); status.textContent = 'Completa el campo señalado.'; return; }
     const wa = form.elements.whatsapp;

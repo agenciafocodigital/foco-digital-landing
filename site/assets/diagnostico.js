@@ -47,6 +47,8 @@
     field.setAttribute('aria-describedby', 'audit-error');
     const fs = field.type === 'radio' ? field.closest('fieldset') : null;
     if (fs) fs.appendChild(error);
+    else if (field.type === 'checkbox') field.closest('label').after(error);
+    else field.after(error);
     field.focus();
     (fs || field).scrollIntoView({ block: 'center' });
   }
@@ -70,8 +72,10 @@
     // Visibilidad
     const huecos = [];
     let pv = 0;
-    if (['Por recomendación', 'Pasan por mi local', 'No sé'].includes(g('encuentran'))) { pv += 1; huecos.push('Casi ningún cliente nuevo llega por internet.'); }
-    if (['No aparezco', 'No sé'].includes(g('google'))) { pv += 2; huecos.push('Si te buscan en Google, no te encuentran.'); }
+    if (['Por recomendación', 'Pasan por mi local'].includes(g('encuentran'))) { pv += 1; huecos.push('Casi ningún cliente nuevo llega por internet.'); }
+    else if (g('encuentran') === 'No sé') { pv += 1; huecos.push('No sabes cómo llegan tus clientes nuevos; conviene medirlo para saber qué funciona.'); }
+    if (g('google') === 'No aparezco') { pv += 2; huecos.push('Si te buscan en Google, no te encuentran.'); }
+    else if (g('google') === 'No sé') { pv += 1; huecos.push('No sabes qué ve un cliente cuando te busca en Google.'); }
     else if (g('google').startsWith('Una ficha incompleta')) { pv += 1; huecos.push('Tu ficha de Google está incompleta o desactualizada.'); }
     const webHueco = g('web') !== 'Sí, y me trae clientes';
     if (webHueco) { pv += 1; huecos.push(g('web') === 'No tengo' ? 'No tienes página web que explique lo que ofreces.' : 'Tu página web casi no te trae clientes.'); }
@@ -87,10 +91,11 @@
     const t = g('tiempo');
     if (t === 'Al día siguiente o más') pa += 3; else if (t === 'Varias horas') pa += 2;
     else if (t === 'Menos de 1 hora' && g('mensajes') !== 'Menos de 10') pa += 1;
-    if (t) datos.push(`Tardas ${t.toLowerCase()} en contestar.`);
+    if (t) datos.push(t === 'Al día siguiente o más' ? 'Contestas al día siguiente o después.' : `Tardas ${t.toLowerCase()} en contestar.`);
     if (g('horas') === '1 a 3 horas') pa += 1; else if (g('horas') === 'Más de 3 horas') pa += 2;
     if (g('horas')) datos.push(`Dedicas ${/^\d/.test(g('horas')) ? 'de ' : ''}${g('horas').toLowerCase()} al día a contestar mensajes.`);
     const perd = { '1 a 3': [1, 3, 1], '4 a 10': [4, 10, 2], 'Más de 10': [10, null, 3], 'No sé': [null, null, 1] }[g('perdidas')];
+    if (perd && !perd[0]) datos.push('No sabes cuántas ventas se te escapan por no contestar a tiempo; vale la pena medirlo.');
     if (perd) { pa += perd[2]; if (perd[0]) datos.push(`El mes pasado perdiste ${/^\d/.test(g('perdidas')) ? 'de ' : ''}${g('perdidas').toLowerCase()} ventas, citas o reservas.`); }
     const aten = nivel(pa, 3);
     // Estimación con sus respuestas
@@ -125,6 +130,7 @@
     const r = resultado(fd);
     const body = new URLSearchParams(fd);
     body.set('form-name', FORM);
+    body.set('whatsapp', String(fd.get('whatsapp') || '').replace(/\D/g, ''));
     body.set('resultado', r.clave);
     body.set('perdida_estimada', r.estimacion || 'Sin estimación');
     const next = mount.querySelector('.audit-next');
