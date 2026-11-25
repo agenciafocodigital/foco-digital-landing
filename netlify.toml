@@ -30,6 +30,26 @@
   status = 301
 
 [[redirects]]
+  from = "/servicios/marketing"
+  to = "/servicios/redes-sociales-google/"
+  status = 301
+
+[[redirects]]
+  from = "/servicios/automatizacion"
+  to = "/servicios/asistente-whatsapp-ia/"
+  status = 301
+
+[[redirects]]
+  from = "/servicios/marketing/*"
+  to = "/servicios/redes-sociales-google/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/servicios/automatizacion/*"
+  to = "/servicios/asistente-whatsapp-ia/:splat"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/404/index.html"
   status = 404
