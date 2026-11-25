@@ -93,42 +93,14 @@ h3 { font-weight: 700; letter-spacing: -0.02em; }
 .footer-actions strong { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
 .footer-actions a:hover strong { text-decoration: underline; }
 
-/* 8. Barra de acciones fija */
-.action-bar {
-  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 50;
-  display: flex; gap: 4px; padding: 5px; border-radius: 12px;
-  background: rgba(8, 31, 53, 0.94); border: 1px solid rgba(36, 185, 242, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); backdrop-filter: blur(8px);
-}
-.action-bar a {
-  display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 16px;
-  border-radius: 8px; color: var(--white); text-decoration: none; font-size: 14px; font-weight: 500; white-space: nowrap;
-}
-.action-bar a:hover { background: rgba(36, 185, 242, 0.12); }
-.action-bar .action-main { background: var(--yellow); color: var(--night); font-weight: 600; }
-.action-bar .action-main:hover { background: #ffd65c; }
-.action-bar a:focus-visible, .footer-actions a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-body { padding-bottom: 84px; }
-@media (max-width: 520px) {
-  .action-bar { left: 8px; right: 8px; bottom: 8px; transform: none; }
-  .action-bar a { flex: 1 1 0; padding: 10px 8px; font-size: 13px; }
-}
-@media print { .action-bar { display: none; } }
+/* 8. (Barra de acciones fija eliminada el 24/11/2026 por decisión de Frank) */
+.footer-actions a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
 /* 9. Imágenes con tamaño declarado: que conserven su proporción */
 img.visual-image { height: auto; }
 
 /* 10. Categorías de las guías en tipo oración */
 .blog-card .category { text-transform: none !important; letter-spacing: 0.01em !important; font-size: 13px; }
-
-/* 11. La barra fija aparece al dejar atrás la cabecera (si hay JavaScript) */
-.js-action-bar .action-bar { opacity: 0; transform: translate(-50%, 16px); pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
-.js-action-bar .action-bar.is-visible { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
-@media (max-width: 520px) {
-  .js-action-bar .action-bar { transform: translateY(16px); }
-  .js-action-bar .action-bar.is-visible { transform: none; }
-}
-@media (prefers-reduced-motion: reduce) { .js-action-bar .action-bar { transition: none; } }
 
 /* 12. Ajustes tras la revisión */
 .byline { color: var(--muted) !important; }
@@ -350,11 +322,17 @@ article .cta-alt { margin: 12px 0 0; font-size: 15px; }
 /* §24 SEO: título oculto para lectores de pantalla y enlaces relacionados en las guías */
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .related{margin-top:28px;padding-top:18px;border-top:1px solid rgba(247,249,251,.14)}
-/* §25 Que la barra fija inferior no tape el campo con foco */
-@media(max-width:900px){html{scroll-padding-bottom:96px}}
 /* §26 Auditoría final: 404 centrada, pasos del autodiagnóstico a 13 px, firma enlazada */
 .actions-center{justify-content:center}
 .audit-steps li{font-size:13px}
 .byline a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .fd-caption{display:none}
 @media(max-width:600px){.fd-caption{display:block;grid-column:1/-1;margin:-6px 0 0;color:var(--muted);font-size:15px;line-height:1.5;min-height:3em;text-align:center}.fd-steps li{display:flex;align-items:center;justify-content:center}}
+
+/* §27 Portada: tres servicios en tres columnas iguales */
+.cards-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+.card.web-card{background:var(--deep);color:var(--white);border-color:var(--deep)}
+.web-card p{color:#cfe0ea}.web-card .number{color:var(--yellow)}
+@media(max-width:1000px){.cards-3{grid-template-columns:minmax(0,1fr)}}
+.cards-3 h3{text-wrap:balance}
+.cards-3 .card p{flex:1 1 auto}.cards-3 .card a{margin-top:0}
